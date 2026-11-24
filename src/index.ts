@@ -1,10 +1,9 @@
 import express, { Application, Request, Response } from "express";
+import cors from "cors";
 import 'dotenv/config';
 
-console.log("Dotenv entorno:", process.env.PORT)
-
 const app: Application = express();
-const PORT: number = 3000;
+const PORT: number = Number(process.env.PORT) || 3000;
 
 type Business = {
     id: number,
@@ -16,6 +15,8 @@ type Business = {
 let businesses: Business[] = [];
 
 app.use(express.json());
+
+app.use(cors());
 
 app.get("/", (req: Request, res: Response) => {
 	return res.json({ message: "Servidor funcionando correctamente" });
