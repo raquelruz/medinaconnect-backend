@@ -6,15 +6,6 @@ import { BusinessesRouter } from "./api/businesses/businesses.routes.js";
 const app: Application = express();
 const PORT: number = Number(process.env.PORT) || 3000;
 
-type Business = {
-    id: number,
-    title: string,
-    description: string,
-    isPublic: boolean
-}
-
-let businesses: Business[] = [];
-
 app.use(express.json());
 
 app.use(cors());
