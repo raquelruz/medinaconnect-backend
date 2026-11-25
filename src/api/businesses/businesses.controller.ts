@@ -32,8 +32,8 @@ export const getOneBusiness = (req: Request, res: Response) => {
 export const createBusiness = (req: Request, res: Response) => {
     console.log(req.body);
 
-    if (!req.body.title) {
-        return res.status(400).json("El campo title es obligatorio");
+    if (!req.body.name) {
+        return res.status(400).json("El campo name es obligatorio");
     }
 
     const newBusiness: Business = {
