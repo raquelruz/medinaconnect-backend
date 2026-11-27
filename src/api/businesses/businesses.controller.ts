@@ -1,13 +1,8 @@
 import { Request, Response } from "express";
+import { BusinessType } from "./businesses.types.js";
 
-type Business = {
-    id: number;
-    title: string;
-    description: string;
-    isPublic: boolean;
-};
 
-let businesses: Business[] = [];
+let businesses: BusinessType[] = [];
 
 // GET - Obtener todos los negocios
 export const getAllBusinesses = (req: Request, res: Response) => {
@@ -17,7 +12,7 @@ export const getAllBusinesses = (req: Request, res: Response) => {
 // GET - Obtener un negocio
 export const getOneBusiness = (req: Request, res: Response) => {
     const id: Number = Number(req.params.id);
-    const business: Business | undefined = businesses.find((business) => business.id === id);
+    const business: BusinessType | undefined = businesses.find((business) => business.id === id);
 
     if (!business) {
         return res.status(404).json({
@@ -36,7 +31,7 @@ export const createBusiness = (req: Request, res: Response) => {
         return res.status(400).json("El campo name es obligatorio");
     }
 
-    const newBusiness: Business = {
+    const newBusiness: BusinessType = {
         id: Date.now(),
         ...req.body,
     };
@@ -48,7 +43,7 @@ export const createBusiness = (req: Request, res: Response) => {
 // PUT - Editar un negocio
 export const updateBusiness = (req: Request, res: Response) => {
     const id: Number = Number(req.params.id);
-    const business: Business | undefined = businesses.find((business) => business.id === id);
+    const business: BusinessType | undefined = businesses.find((business) => business.id === id);
 
     if (!business) {
         return res.status(404).json({
@@ -63,7 +58,7 @@ export const updateBusiness = (req: Request, res: Response) => {
 // DELETE - Eliminar un negocio
 export const deleteBusiness = (req: Request, res: Response) => {
     const id: Number = Number(req.params.id);
-    const business: Business | undefined = businesses.find((business) => business.id === id);
+    const business: BusinessType | undefined = businesses.find((business) => business.id === id);
 
     if (!business) {
         return res.status(404).json({ message: "Negocio no encontrado " });
