@@ -2,7 +2,7 @@
 import mongoose, { Schema } from "mongoose";
 import type { BusinessType } from "./businesses.types.js";
 
-const businessSchema = new Schema<BusinessType>(
+const businessSchema: Schema = new Schema<BusinessType>(
     {
         name: { type: String, required: true },
         description: {
