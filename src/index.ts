@@ -2,18 +2,12 @@ import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import 'dotenv/config';
 import { BusinessesRouter } from "./api/businesses/businesses.routes.js";
+import db from "./config/db.js";
+
+db.connect();
 
 const app: Application = express();
 const PORT: number = Number(process.env.PORT) || 3000;
-
-type Business = {
-    id: number,
-    title: string,
-    description: string,
-    isPublic: boolean
-}
-
-let businesses: Business[] = [];
 
 app.use(express.json());
 
