@@ -4,10 +4,10 @@ export type BusinessType = {
     description: string;
     categoryId: number;
     address: string;
-    phone: number;
+    phone: string;
     publicEmail: string;
     website: string;
-    openingHours: Date;
+    openingHours: string;
     status: string;
     ownerId: number;
 };

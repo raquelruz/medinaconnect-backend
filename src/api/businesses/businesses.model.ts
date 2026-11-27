@@ -1,23 +1,30 @@
+
 import mongoose, { Schema } from "mongoose";
-import { BusinessType } from "./businesses.types.js";
+import type { BusinessType } from "./businesses.types.js";
 
-
-const businessSchema: Schema<BusinessType> = new Schema(
+const businessSchema = new Schema<BusinessType>(
     {
         name: { type: String, required: true },
-        description: { type: String, minLength: 10, maxLength: [2000, "La descripción es demasiado larga."] },
+        description: {
+            type: String,
+            minLength: 10,
+            maxLength: [2000, "La descripción es demasiado larga."],
+        },
         categoryId: { type: Number },
         address: { type: String },
-        phone: { type: Number },
+        phone: { type: String },
         publicEmail: { type: String },
         website: { type: String },
-        openingHours: { type: Date },
+        openingHours: { type: String },
         status: { type: String },
-        ownerId: { type: Number }
+        ownerId: { type: Number },
     },
     {
         timestamps: true,
     }
 );
 
-export const Businesses = mongoose.model<BusinessType>("businesses", businessSchema);
+export const Businesses = mongoose.model<BusinessType>(
+    "businesses",
+    businessSchema
+);
