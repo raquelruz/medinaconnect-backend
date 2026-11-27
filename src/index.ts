@@ -3,6 +3,7 @@ import cors from "cors";
 import 'dotenv/config';
 import { BusinessesRouter } from "./api/businesses/businesses.routes.js";
 import db from "./config/db.js";
+import { CategoriesRoutes } from "./api/categories/categories.routes.js";
 
 db.connect();
 
@@ -18,6 +19,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/businesses", BusinessesRouter);
+app.use("/categories", CategoriesRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Servidor funcionando en http://localhost:${PORT}`);

@@ -1,16 +1,7 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 import { createBusiness, deleteBusiness, getAllBusinesses, getOneBusiness, updateBusiness } from "../businesses/businesses.controller.js";
 
 export const BusinessesRouter: Router = Router();
-
-type Business = {
-    id: number,
-    title: string,
-    description: string,
-    isPublic: boolean
-}
-
-let businesses: Business[] = [];
 
 // GET /businesses
 BusinessesRouter.get("/", getAllBusinesses);
