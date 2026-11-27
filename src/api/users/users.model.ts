@@ -1,9 +1,33 @@
-import { Request, Response } from "express";
+import mongoose, { Schema } from "mongoose";
 
-export const getRegister = (req: Request, res: Response) => {
-    return res.json("Ruta REGISTER funcionando");
-};
+const userSchema: Schema = new Schema(
+    {
+        username: {
+            type: String,
+            required: [true, "El nombre de usuario es obligatorio."],
+            unique: true,
+            index: true,
+            trim: true,
+        },
+        name: { type: String },
+        email: {
+            type: String,
+            required: true,
+            lowercase: true,
+        },
+        password: {
+            type: String,
+            select: false,
+        },
+        role: { 
+            type: String,
+            enum: ["admin", "user", "guest"],
+            default: "guest"
+        },
+    },
+    {
+        timestamps: true,
+    }
+);
 
-export const getLogin = (req: Request, res: Response) => {
-    return res.json({ message: "Ruta LOGIN funcionando" });
-};
+export const Users = mongoose.model("/users", userSchema);
